@@ -267,6 +267,7 @@ PAWWallPostCreateViewControllerDataSource>
 }
 
 - (void)startStandardUpdates {
+	[self.locationManager requestWhenInUseAuthorization];
     [self.locationManager startUpdatingLocation];
 
     CLLocation *currentLocation = self.locationManager.location;
@@ -276,7 +277,6 @@ PAWWallPostCreateViewControllerDataSource>
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     switch (status) {
         case kCLAuthorizationStatusAuthorized:
         {
@@ -310,18 +310,12 @@ PAWWallPostCreateViewControllerDataSource>
 }
 
 - (void)locationManager:(CLLocationManager *)manager
-    didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
-
-    self.currentLocation = newLocation;
+	 didUpdateLocations:(NSArray *)locations {
+    self.currentLocation = [locations lastObject];
 }
 
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
-    NSLog(@"Error: %@", [error description]);
-
     if (error.code == kCLErrorDenied) {
         [self.locationManager stopUpdatingLocation];
     } else if (error.code == kCLErrorLocationUnknown) {
@@ -423,7 +417,7 @@ PAWWallPostCreateViewControllerDataSource>
     // If no objects are loaded in memory, we look to the cache first to fill the table
     // and then subsequently do a query against the network.
     if ([self.allPosts count] == 0) {
-        query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+		query.cachePolicy = kPFCachePolicyNetworkOnly;
     }
 
     // Query for posts sort of kind of near our current location.
@@ -434,6 +428,7 @@ PAWWallPostCreateViewControllerDataSource>
 
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
+			NSLog(@"%@", error.description);
             NSLog(@"error in geo query!"); // todo why is this ever happening?
         } else {
             // We need to make new post objects from objects,
