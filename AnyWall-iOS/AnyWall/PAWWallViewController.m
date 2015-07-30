@@ -417,7 +417,7 @@ PAWWallPostCreateViewControllerDataSource>
     // If no objects are loaded in memory, we look to the cache first to fill the table
     // and then subsequently do a query against the network.
     if ([self.allPosts count] == 0) {
-		query.cachePolicy = kPFCachePolicyNetworkOnly;
+		query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     }
 
     // Query for posts sort of kind of near our current location.
@@ -428,8 +428,7 @@ PAWWallPostCreateViewControllerDataSource>
 
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
-			NSLog(@"%@", error.description);
-            NSLog(@"error in geo query!"); // todo why is this ever happening?
+            NSLog(@"error in geo query: %@", error.description); // todo why is this ever happening?
         } else {
             // We need to make new post objects from objects,
             // and update allPosts and the map to reflect this new array.
