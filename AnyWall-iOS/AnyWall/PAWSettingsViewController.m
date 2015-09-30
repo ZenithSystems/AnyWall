@@ -46,7 +46,7 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 1;
 #pragma mark -
 #pragma mark UIViewController
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskPortrait;
 }
 
@@ -139,7 +139,7 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 1;
             NSLog(@"We have a zero filter distance!");
         }
 
-        if (abs(PAWFeetToMeters(distance) - self.filterDistance) < 0.001 ) {
+        if (fabs(PAWFeetToMeters(distance) - self.filterDistance) < 0.001 ) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         } else {
             cell.accessoryType = UITableViewCellAccessoryNone;

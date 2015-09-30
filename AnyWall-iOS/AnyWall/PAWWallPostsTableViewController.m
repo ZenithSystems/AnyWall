@@ -87,7 +87,7 @@ static NSUInteger const PAWWallPostsTableViewMainSection = 0;
     self.noDataButton.frame = noDataButtonFrame;
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskPortrait;
 }
 

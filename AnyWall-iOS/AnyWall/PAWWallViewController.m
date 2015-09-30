@@ -117,7 +117,7 @@ PAWWallPostCreateViewControllerDataSource>
     self.wallPostsTableViewController.view.frame = tableViewFrame;
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskPortrait;
 }
 
