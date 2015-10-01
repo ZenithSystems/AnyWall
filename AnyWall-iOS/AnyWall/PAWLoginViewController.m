@@ -82,7 +82,7 @@ PAWNewUserViewControllerDelegate>
     self.scrollView.contentSize = self.backgroundView.bounds.size;
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskPortrait;
 }
 

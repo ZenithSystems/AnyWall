@@ -8,11 +8,11 @@
       "resizing" : {
         "mode" : "9-part",
         "center" : {
-          "mode" : "fill",
+          "mode" : "tile",
           "width" : 1,
           "height" : 61
         },
-        "capInsets" : {
+        "cap-insets" : {
           "bottom" : 49,
           "top" : 6,
           "right" : 16,
@@ -22,6 +22,10 @@
       "idiom" : "universal",
       "filename" : "bubble_green@2x.png",
       "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
