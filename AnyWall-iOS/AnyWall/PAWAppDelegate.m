@@ -8,7 +8,9 @@
 #import "PAWAppDelegate.h"
 
 #import <Parse/Parse.h>
-#import <ParseFacebookUtils/PFFacebookUtils.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+
 
 #import "PAWConstants.h"
 #import "PAWConfigManager.h"
@@ -34,6 +36,9 @@ PAWSettingsViewControllerDelegate>
     // ****************************************************************************
     // Parse initialization
     [Parse setApplicationId:@"APPLICATION_ID" clientKey:@"CLIENT_KEY"];
+
+    // PFFacebookUtils initialization
+    [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
     // ****************************************************************************
 
     // Set the global tint on the navigation bar
@@ -62,9 +67,17 @@ PAWSettingsViewControllerDelegate>
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
 
-	[[PAWConfigManager sharedManager] fetchConfigIfNeeded];
+    [[PAWConfigManager sharedManager] fetchConfigIfNeeded];
 
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                          openURL:url
+                                                sourceApplication:sourceApplication
+                                                       annotation:annotation
+            ];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

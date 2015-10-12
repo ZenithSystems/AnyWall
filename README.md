@@ -17,9 +17,17 @@ pod install
 3. Open the Xcode workspace at `AnyWall-iOS/AnyWall.xcworkspace`
 4. Add your Parse application id and client key in `PAWAppDelegate.m`
 
+#### Configuring Facebook integration
+
+1. Set up a Facebook app at http://developers.facebook.com/apps
+
+2. Set up a URL scheme for fbFACEBOOK_APP_ID, where FACEBOOK_APP_ID is your Facebook app's id.
+
+3. Add your Facebook app id to `Info.plist` in the `FacebookAppID` key.
+
 ### Learn More
 
-To learn more, take a look at the [AnyWall iOS](https://parse.com/tutorials/anywall) tutorial. 
+To learn more, take a look at the [AnyWall iOS](https://parse.com/tutorials/anywall) tutorial.
 
 ## Android
 

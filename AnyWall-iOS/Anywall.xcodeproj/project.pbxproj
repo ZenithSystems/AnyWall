@@ -191,7 +191,7 @@
 				4CC6476E8ADA98C6D74B635D /* Pods */,
 			);
 			sourceTree = "<group>";
-			usesTabs = 1;
+			usesTabs = 0;
 		};
 		E56E83F314D72E1100E856AB /* Products */ = {
 			isa = PBXGroup;
